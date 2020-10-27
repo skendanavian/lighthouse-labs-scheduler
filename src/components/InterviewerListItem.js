@@ -6,18 +6,26 @@ import "./InterviewerListItem.scss";
 const classNames = require("classnames");
 //prettier-ignore
 export default function InterviewerListItem(props) {
+
   const interviewerClass = classNames("interviewers__item", {
-    "interviewers__item--selected": props.selected, 
+    "interviewers__item--selected": props.selected
+  });
+  const selectedImageClass = classNames("interviewers__item-image", {
+    "interviewers__item-image--selected": props.selected
   });
 
+  const displayName = props.selected ? props.name : "" ;
+
+
+
   return (
-    <li className={interviewerClass}>
+    <li onClick={console.log('clicked')} className={interviewerClass}>
       <img
-        className="interviewers__item-image"
-        src="https://i.imgur.com/LpaY82x.png"
-        alt="Sylvia Palmer"
+        className={selectedImageClass}
+        src={props.avatar}
+        alt={props.name}
       />
-      Sylvia Palmer
+      {displayName}
     </li>
   );
 }

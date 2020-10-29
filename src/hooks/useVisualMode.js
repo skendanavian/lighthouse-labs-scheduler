@@ -13,6 +13,7 @@ export default function useVisualMode(initial) {
       setHistory(historyCopy);
       setMode(newMode);
     } else {
+      //Good alternative to using push --> setHistory([...history, newMode])
       historyCopy.push(newMode);
       setHistory(historyCopy);
       setMode(newMode);
@@ -22,6 +23,7 @@ export default function useVisualMode(initial) {
   function back() {
     if (history.length > 1) {
       const historyCopy = [...history];
+      //Good alternative to using pop --> history.slice(0, history.length -1)
       historyCopy.pop();
       setHistory(historyCopy);
       setMode(historyCopy[historyCopy.length - 1]);

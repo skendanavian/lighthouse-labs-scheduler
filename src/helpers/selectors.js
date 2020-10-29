@@ -38,3 +38,29 @@ export function getInterview(state, interview) {
 
   return interviewData;
 }
+
+export function getInterviewersForDay(state, day) {
+  const { days, interviewers } = state;
+
+  if (!days.length) {
+    return [];
+  }
+
+  const interviewerId = days.find((e) => e.name === day);
+  if (!interviewerId) {
+    return [];
+  }
+  const interviewerNums = interviewerId.interviewers;
+  console.log({ interviewerNums });
+
+  if (interviewerId === undefined || !interviewerNums.length) {
+    return [];
+  }
+
+  const specificInterviewers = interviewerNums.map((id) => {
+    return interviewers[id];
+  });
+
+  console.log({ specificInterviewers });
+  return specificInterviewers;
+}

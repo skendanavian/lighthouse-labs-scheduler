@@ -7,37 +7,29 @@ import Form from "./Form";
 import "./styles.scss";
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment(props) {
-  const { time, interview } = props;
+export default function Appointment({ id, time, interview, interviewers }) {
   const style = classNames("appointment", {
-    ":last-of-type": props.id === "last",
+    ":last-of-type": id === "last",
   });
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
+  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   return (
     <article className={"appointment"}>
-      {mode === EMPTY && (
-        <Empty time={props.time} onAdd={() => transition(CREATE)} />
-      )}
+      {mode === EMPTY && <Empty time={time} onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form
-          interviewers={[]}
+          interviewers={interviewers}
           onSave={console.log("onSave")}
           onCancel={() => back()}
         />
       )}
       {mode === SHOW && (
-        <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
-        />
+        <Show student={interview.student} interviewer={interview.interviewer} />
       )}
     </article>
   );

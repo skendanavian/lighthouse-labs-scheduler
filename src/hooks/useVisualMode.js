@@ -4,18 +4,28 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  function transition(newMode) {
+  function transition(newMode, replace = false) {
     const historyCopy = [...history];
-    historyCopy.push(newMode);
-    setHistory(historyCopy);
-    setMode(newMode);
+
+    if (replace) {
+      historyCopy.pop();
+      historyCopy.push(newMode);
+      setHistory(historyCopy);
+      setMode(newMode);
+    } else {
+      historyCopy.push(newMode);
+      setHistory(historyCopy);
+      setMode(newMode);
+    }
   }
 
   function back() {
-    const historyCopy = [...history];
-    historyCopy.pop();
-    setHistory(historyCopy);
-    setMode(historyCopy[historyCopy.length - 1]);
+    if (history.length > 1) {
+      const historyCopy = [...history];
+      historyCopy.pop();
+      setHistory(historyCopy);
+      setMode(historyCopy[historyCopy.length - 1]);
+    }
   }
 
   return { mode, transition, back };

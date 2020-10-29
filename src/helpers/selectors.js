@@ -21,3 +21,20 @@ export function getAppointmentsForDay(state, day) {
 
   return appts;
 }
+
+export function getInterview(state, interview) {
+  const { interviewers } = state;
+
+  if (!interview) {
+    return null;
+  }
+
+  const individualInterviewer = interviewers[interview.interviewer];
+
+  const interviewData = {
+    student: interview.student,
+    interviewer: individualInterviewer,
+  };
+
+  return interviewData;
+}

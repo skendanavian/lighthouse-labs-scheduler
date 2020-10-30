@@ -33,8 +33,28 @@ export default function Application(props) {
       [id]: appointment,
     };
 
-    // Ask about how to implement proper error handling here so the saving logo stops on error
     return axios.put(`api/appointments/${id}`, appointments[id]).then(() => {
+      setState({ ...state, appointments });
+    });
+  }
+
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+
+    console.log({ appointment });
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    console.log({ appointments });
+    console.log("appt id", appointments[id]);
+
+    return axios.delete(`api/appointments/${id}`).then(() => {
       setState({ ...state, appointments });
     });
   }
@@ -89,6 +109,7 @@ export default function Application(props) {
               interview={interview}
               interviewers={interviewers}
               bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
             />
           );
         })}

@@ -22,6 +22,7 @@ export default function Show(props) {
             alt="Edit"
           />
           <img
+            //Change to call a function transitioning to CONFIRM view
             onClick={props.onDelete}
             className="appointment__actions-button"
             src="images/trash.png"

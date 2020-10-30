@@ -32,7 +32,11 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment,
     };
-    setState({ ...state, appointments });
+
+    // Ask about how to implement proper error handling here so the saving logo stops on error
+    return axios.put(`api/appointments/${id}`, appointments[id]).then(() => {
+      setState({ ...state, appointments });
+    });
   }
 
   useEffect(() => {

@@ -21,12 +21,15 @@ export default function Appointment({
     ":last-of-type": id === "last",
   });
 
+  console.log("interview from index", interview);
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT";
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
@@ -48,6 +51,10 @@ export default function Appointment({
 
   function confirmDelete() {
     transition(CONFIRM);
+  }
+
+  function editForm() {
+    transition(EDIT);
   }
 
   function cancel(id) {
@@ -72,11 +79,21 @@ export default function Appointment({
           onCancel={() => back()}
         />
       )}
+      {mode === EDIT && (
+        <Form
+          interviewers={interviewers}
+          onSave={save}
+          onCancel={() => back()}
+          name={interview.student}
+          interviewer={interview.interviewer.id}
+        />
+      )}
       {mode === SHOW && (
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
           onDelete={() => confirmDelete()}
+          onEdit={() => editForm()}
         />
       )}
       {mode === SAVING && <Status message="Saving" />}

@@ -7,7 +7,13 @@ import Form from "./Form";
 import "./styles.scss";
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ id, time, interview, interviewers }) {
+export default function Appointment({
+  bookInterview,
+  id,
+  time,
+  interview,
+  interviewers,
+}) {
   const style = classNames("appointment", {
     ":last-of-type": id === "last",
   });
@@ -18,13 +24,22 @@ export default function Appointment({ id, time, interview, interviewers }) {
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+    bookInterview(id, interviewer);
+    transition(SHOW);
+  }
+
   return (
     <article className={"appointment"}>
       {mode === EMPTY && <Empty time={time} onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
-          onSave={console.log("onSave")}
+          onSave={save}
           onCancel={() => back()}
         />
       )}

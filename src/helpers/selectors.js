@@ -51,7 +51,6 @@ export function getInterviewersForDay(state, day) {
     return [];
   }
   const interviewerNums = interviewerId.interviewers;
-  console.log({ interviewerNums });
 
   if (interviewerId === undefined || !interviewerNums.length) {
     return [];
@@ -61,6 +60,5 @@ export function getInterviewersForDay(state, day) {
     return interviewers[id];
   });
 
-  console.log({ specificInterviewers });
   return specificInterviewers;
 }

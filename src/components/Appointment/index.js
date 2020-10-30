@@ -29,7 +29,8 @@ export default function Appointment({
       student: name,
       interviewer,
     };
-    bookInterview(id, interviewer);
+    bookInterview(id, interview);
+    console.log(interview);
     transition(SHOW);
   }
 

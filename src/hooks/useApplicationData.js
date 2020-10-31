@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -8,6 +9,18 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {},
   });
+
+  useEffect(() => {
+    const dailyAppts = getAppointmentsForDay(state, state.day);
+    const emptySpots = dailyAppts.filter((appt) => !appt.interview);
+    const dayObj = state.days.map((day) => {
+      if (day.name === state.day) {
+        day.spots = emptySpots.length;
+      }
+      return day;
+    });
+    setState((prev) => ({ ...prev, days: dayObj }));
+  }, [state.appointments]);
 
   useEffect(() => {
     Promise.all([

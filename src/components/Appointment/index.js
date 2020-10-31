@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import "./styles.scss";
 import useVisualMode from "hooks/useVisualMode";
 
@@ -30,6 +31,8 @@ export default function Appointment({
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_DELETE = "ERROR_DELETE";
+  const ERROR_SAVE = "ERROR_SAVE";
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
@@ -40,11 +43,13 @@ export default function Appointment({
     };
 
     transition(SAVING);
+
     bookInterview(id, interview)
       .then(() => {
         transition(SHOW);
       })
       .catch((err) => {
+        transition(ERROR_SAVE, true);
         console.error(err);
       });
   }
@@ -59,12 +64,13 @@ export default function Appointment({
 
   function cancel(id) {
     console.log("delete got called");
-    transition(DELETING);
+    transition(DELETING, true);
     cancelInterview(id)
       .then(() => {
         transition(EMPTY);
       })
       .catch((err) => {
+        transition(ERROR_DELETE, true);
         console.error(err);
       });
   }
@@ -100,6 +106,24 @@ export default function Appointment({
       {mode === DELETING && <Status message="Cancelling" />}
       {mode === CONFIRM && (
         <Confirm onConfirm={() => cancel(id)} onCancel={() => back()} />
+      )}
+
+      {mode === ERROR_SAVE && (
+        <Error
+          message={
+            "The appointment was not successfully saved. Please try again."
+          }
+          onClose={() => back()}
+        />
+      )}
+
+      {mode === ERROR_DELETE && (
+        <Error
+          message={
+            "The appointment was not successfully deleted. Please try again."
+          }
+          onClose={() => back()}
+        />
       )}
     </article>
   );

@@ -10,6 +10,7 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
+  /* updates spots remaining for each day  */
   useEffect(() => {
     const dailyAppts = getAppointmentsForDay(state, state.day);
     const emptySpots = dailyAppts.filter((appt) => !appt.interview);

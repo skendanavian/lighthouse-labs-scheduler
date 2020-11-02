@@ -22,8 +22,6 @@ export default function Appointment({
     ":last-of-type": id === "last",
   });
 
-  console.log("interview from index", interview);
-
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -63,7 +61,6 @@ export default function Appointment({
   }
 
   function cancel(id) {
-    console.log("delete got called");
     transition(DELETING, true);
     cancelInterview(id)
       .then(() => {

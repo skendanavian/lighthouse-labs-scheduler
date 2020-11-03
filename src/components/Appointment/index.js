@@ -73,7 +73,7 @@ export default function Appointment({
   }
 
   return (
-    <article className={"appointment"}>
+    <article data-testid="appointment" className={"appointment"}>
       {mode === EMPTY && <Empty time={time} onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form

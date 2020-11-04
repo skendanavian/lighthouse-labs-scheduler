@@ -6,7 +6,7 @@ Interview Scheduler is a React.js app that allows users to book, edit, and cance
 
 ## Functionality
 
-The application is used to schedule interview appointments. The user can select the day, time, and interviewer for each appointment. They also have the ability to edit and cancel their appointments. Loading views are shown during async database operations. The application keeps track of the available appointment slots for each day and renders/updates the data via api requests to a PostgreSQL database.
+The application is used to schedule interview appointments. The user can select the day, time, and interviewer for each appointment. They also have the ability to edit and cancel their appointments. Loading views are shown during async database operations. The application keeps track of the available appointment slots for each day and renders/updates using axios api requests to a PostgreSQL database.
 
 ## Development Details
 
@@ -55,7 +55,8 @@ npm run storybook
 
 ## dependencies
 
-```"axios": "^0.21.0",
+```
+   "axios": "^0.21.0",
    "classnames": "^2.2.6",
    "normalize.css": "^8.0.1",
    "react": "^16.9.0",

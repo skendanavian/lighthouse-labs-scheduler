@@ -33,6 +33,6 @@ describe("Appointments", () => {
     cy.contains("Confirm").click();
     cy.contains("Cancelling");
     cy.get("Cancelling").should("not.exist");
-    cy.get(".appointment__card--show").should("not.exist");
+    cy.get(".appointment__card--show", "Archie Cohen").should("not.exist");
   });
 });

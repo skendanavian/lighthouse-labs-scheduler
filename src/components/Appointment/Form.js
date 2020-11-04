@@ -22,9 +22,9 @@ export default function Form(props) {
     if (name === "") {
       setError("Student name cannot be blank");
       return;
-      //This line prevents bug on submitting form/ trying to edit after but breaks tests
-      /* } else if (!interviewer) {
-      setError("You need to select an interviewer"); */
+      /* Found bug amidst assignment directions --> this is the fix */
+    } else if (!interviewer) {
+      setError("You need to select an interviewer");
     } else {
       setError("");
       onSave(name, interviewer);

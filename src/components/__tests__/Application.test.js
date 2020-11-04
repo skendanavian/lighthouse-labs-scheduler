@@ -40,7 +40,7 @@ describe("Application", () => {
 
     const appointment = getAllByTestId(container, "appointment")[0];
 
-    fireEvent.click(getByAltText(container, "Add"));
+    fireEvent.click(getByAltText(appointment, "Add"));
     fireEvent.change(getByPlaceholderText(container, /Enter Student Name/i), {
       target: { value: "Lydia Miller-Jones" },
     });

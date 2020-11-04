@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { action } from "@storybook/addon-actions/dist/preview";
 import { render } from "@testing-library/react";
 import DayListItem from "./DayListItem";

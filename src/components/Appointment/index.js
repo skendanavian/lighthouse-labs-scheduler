@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Header from "./Header";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
@@ -73,6 +74,7 @@ export default function Appointment({
 
   return (
     <article data-testid="appointment" className={"appointment"}>
+      <Header time={time} />
       {mode === EMPTY && <Empty time={time} onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form

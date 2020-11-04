@@ -4,13 +4,12 @@ import { render } from "@testing-library/react";
 import "./InterviewerListItem.scss";
 
 const classNames = require("classnames");
-//prettier-ignore
-export default function InterviewerListItem(props) {
 
+export default function InterviewerListItem(props) {
   const interviewerClass = classNames("interviewers__item", {
-    "interviewers__item--selected": props.selected
+    "interviewers__item--selected": props.selected,
   });
-  
+
   return (
     <li onClick={props.setInterviewer} className={interviewerClass}>
       <img

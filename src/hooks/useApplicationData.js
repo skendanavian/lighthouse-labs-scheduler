@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getAppointmentsForDay } from "helpers/selectors";
 
+/* This hook manages all axios GET, PUT, and DELETE requests */
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -11,6 +13,7 @@ export default function useApplicationData() {
   });
 
   /* updates spots remaining for each day  */
+
   useEffect(() => {
     const dailyAppts = getAppointmentsForDay(state, state.day);
     const emptySpots = dailyAppts.filter((appt) => !appt.interview);

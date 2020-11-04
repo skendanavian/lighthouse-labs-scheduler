@@ -1,3 +1,5 @@
+/* Helpers for parsing DB data for use in rendering */
+
 export function getAppointmentsForDay(state, day) {
   const { days, appointments } = state;
 

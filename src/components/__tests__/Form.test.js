@@ -1,6 +1,11 @@
 import React from "react";
 
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  fireEvent,
+  getByAltText,
+} from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
@@ -50,13 +55,14 @@ describe("Form", () => {
     /* 1. Create the mock onSave function */
     const onSave = jest.fn();
     /* 2. Render the Form with interviewers, name and the onSave mock function passed as an onSave prop */
-    const { queryByText, getByText } = render(
+    const { queryByText, getByText, debug } = render(
       <Form
         interviewers={interviewers}
         name="Lydia Miller-Jones"
         onSave={onSave}
       />
     );
+
     /* 3. Click the save button */
     fireEvent.click(getByText("Save"));
 

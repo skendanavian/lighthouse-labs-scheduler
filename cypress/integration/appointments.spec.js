@@ -31,12 +31,8 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Sylvia Palmer");
     cy.get("[alt=Delete]").first().click({ force: true });
     cy.contains("Confirm").click();
+    cy.contains("Cancelling");
+    cy.get("Cancelling").should("not.exist");
     cy.get(".appointment__card--show").should("not.exist");
   });
 });
-
-//Cancelling
-//Visits the root of our web server
-// Clicks the delete button for the existing appointment
-// Clicks the confirm button
-// Sees that the appointment slot is empty

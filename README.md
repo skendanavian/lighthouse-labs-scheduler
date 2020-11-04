@@ -39,7 +39,7 @@ Interview Scheduler was developed using the React.js library. The components wer
 - Storybook, Webpack Dev Server, Jest, Testing Library
 - Cypress
 
--The Scheduler client application is created using Create React App. Express is the basis for the Scheduler API server application (not included here or written by me).
+-The Scheduler client application is created using Create React App. Express is the basis for the Scheduler API server application (not included here ).
 
 Both servers run concurrently; requests are proxied from the Webpack development server to the API server.
 
